@@ -9752,13 +9752,11 @@ module.exports = getHostComponentFromComposite;
 var React = __webpack_require__(82);
 var ReactDOM = __webpack_require__(98);
 
+var List = __webpack_require__(185);
+
 ReactDOM.render(
-// React.createElement('a',{href:'#'},'NLMM')
-React.createElement(
-    'a',
-    { href: '#' },
-    'NLMM '
-), document.getElementById('root'));
+// React.createElement('a',{href:'#'},'NLMM'),
+React.createElement(List, null), document.getElementById('root'));
 
 /***/ }),
 /* 82 */
@@ -22395,6 +22393,118 @@ var ReactDOMInvalidARIAHook = {
 
 module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 184 */,
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var React = __webpack_require__(82);
+var Note = __webpack_require__(186);
+var NoteForm = __webpack_require__(187);
+
+var List = React.createClass({
+    displayName: 'List',
+    add: function add(text) {
+        this.state.mang.push(text);
+        this.setState(this.mang);
+    },
+    del: function del(index) {
+        this.state.mang.splice(index, 1);
+        this.setState(this.state);
+    },
+    getInitialState: function getInitialState() {
+        return { mang: ["Android", "IOS", "NodeJs"] };
+    },
+    render: function render() {
+        var _this = this;
+
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(NoteForm, { addNode: this.add }),
+            this.state.mang.map(function (e, i) {
+                return React.createElement(
+                    Note,
+                    { key: i, remove: _this.del, index: i },
+                    e
+                );
+            })
+        );
+    }
+});
+
+module.exports = List;
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var React = __webpack_require__(82);
+var Note = React.createClass({
+    displayName: 'Note',
+    del: function del() {
+        this.props.remove(this.props.index);
+    },
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'p',
+                null,
+                this.props.children
+            ),
+            React.createElement(
+                'button',
+                { onClick: this.del },
+                'Delete '
+            )
+        );
+    }
+});
+
+module.exports = Note;
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var React = __webpack_require__(82);
+var NoteForm = React.createClass({
+    displayName: 'NoteForm',
+    add: function add() {
+        var v = this.refs.txt.value;
+        this.refs.txt.value = '';
+        this.props.addNode(v);
+    },
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement('input', { type: 'text', ref: 'txt', placeholder: 'Enter your note' }),
+            React.createElement('br', null),
+            '  ',
+            React.createElement('br', null),
+            React.createElement(
+                'button',
+                { onClick: this.add },
+                'Add new node'
+            )
+        );
+    }
+});
+
+module.exports = NoteForm;
 
 /***/ })
 /******/ ]);
