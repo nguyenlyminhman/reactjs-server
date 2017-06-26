@@ -1,0 +1,12 @@
+{
+  "name": "reactjs-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nguyenlyminhman/reactjs-server.git",
+  "author": "nguyenlyminhman <nguyenlyminhman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.3"
+  }
+}
